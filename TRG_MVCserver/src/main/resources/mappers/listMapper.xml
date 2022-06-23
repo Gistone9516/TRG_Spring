@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="ListMapper">
+	
+	
+	<insert id = "insertList">
+	INSERT INTO travel_list( list_code, list_city, list_dist) 
+				VALUES(#{list_code}, #{list_city}, #{list_dist})
+	</insert>
+
+	<update id = "updateList">
+	UPDATE travel_list 
+				SET list_travel1 = #{list_travel1}, list_travel2 = #{list_travel2}, list_travel3 = #{list_travel3},
+					list_travel4 = #{list_travel4}, list_travel5 = #{list_travel5}, list_tag1 = #{list_tag1},
+					list_tag2 = #{list_tag2}, user_id = #{user_id}
+				WHERE list_code = #{list_code}
+	</update>
+	
+	<update id = "updateListRecom">
+	UPDATE travel_list 
+				SET list_recom = #{list_recom}
+				WHERE list_code = #{list_code}
+	</update>
+	
+	<delete id = "deleteList">
+	DELETE FROM travel_list 
+				WHERE list_code = #{list_code}, user_id = #{user_id}
+	</delete>
+	
+	<delete id = "deleteListUser">
+	DELETE FROM travel_list 
+				WHERE user_id = #{user_id}
+	</delete>
+					
+	<select id="selectRecomList" resultType="com.spring.trg.domain.travel_listVO">
+	SELECT * from travel_list
+		WHERE list_city = #{list_city}, list_dist = #{list_dist}
+			ORDER BY list_recom ASC LIMIT 3
+	</select>
+	
+	<select id="selectList" resultType="com.spring.trg.domain.travel_listVO">
+	SELECT * from travel_list
+		WHERE list_city = #{list_city}, list_dist = #{list_dist}
+	</select>
+	
+	<select id="selectUserList" resultType="com.spring.trg.domain.travel_listVO">
+	SELECT * from travel_list
+		WHERE user_id = #{user_id} 
+	</select>
+	
+	<select id="selectListCode" resultType="com.spring.trg.domain.travel_listVO">
+	SELECT * from travel_list
+		WHERE list_code = #{list_code}
+	</select>
+	
+	</mapper>

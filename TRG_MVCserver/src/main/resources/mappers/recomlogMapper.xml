@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="RecomlogMapper">
+	
+
+	<insert id = "insertRecomLog">
+	INSERT INTO travel_recomlog( user_id, travel_name, list_code) 
+				VALUES(#{user_id}, #{travel_name}, #{list_code})
+	</insert>
+	
+	<delete id = "deleteRecomTravel">
+	DELETE FROM travel_recomlog 
+				WHERE user_id = #{user_id}, travel_name = #{travel_name}
+	</delete>
+	
+	<delete id = "deleteRecomList">
+	DELETE FROM travel_recomlog 
+				WHERE user_id = #{user_id}, list_code = #{list_code}
+	</delete>
+	
+	<delete id = "deleteRecomListall">
+	DELETE FROM travel_recomlog 
+				WHERE list_code = #{list_code}
+	</delete>
+
+	<select id="selectRecomTravel" resultType="com.spring.trg.domain.recomlogVO">
+	SELECT * from travel_recomlog
+		WHERE user_id = #{user_id}, travel_name = #{travel_name}
+	</select>
+	
+	<select id="selectRecomList" resultType="com.spring.trg.domain.recomlogVO">
+	SELECT * from travel_recomlog
+		WHERE user_id = #{user_id}, list_code = #{list_code}
+	</select>
+	
+</mapper>

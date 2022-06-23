@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="TravelMapper">
+	
+	
+	<insert id = "insertTravel">
+	INSERT INTO travel( travel_name, travel_tag1, travel_tag2) 
+				VALUES( #{travel_name}, #{travel_tag1}, #{travel_tag2})
+	</insert>
+	
+	<update id = "updateTravelRecom">
+	UPDATE travel 
+				SET travel_recom = #{travel_recom}
+				WHERE travel_code = #{travel_code}
+	</update>
+	
+	<select id="selectTravelName" resultType="com.spring.trg.domain.travelVO">
+	SELECT * from travel
+		WHERE travel_name = #{travel_name}
+	</select>
+	
+	</mapper>
